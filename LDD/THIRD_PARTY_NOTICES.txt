@@ -1,0 +1,21 @@
+THIRD-PARTY NOTICES
+
+LDLauncher includes third-party components. Each component is licensed under
+its own terms. You must comply with those terms when redistributing the
+Software.
+
+1) Qt
+   Copyright (C) The Qt Company and other contributors
+   License: LGPL-3.0 (or commercial license if you have one)
+   https://www.qt.io
+   https://www.gnu.org/licenses/lgpl-3.0.txt
+
+2) FFmpeg
+   Copyright (C) FFmpeg developers
+   License: LGPL-2.1+ or GPL-2.0+ depending on the build configuration
+   https://ffmpeg.org
+   https://ffmpeg.org/legal.html
+
+If you bundle these libraries, include the full license texts and comply with
+their requirements (for example, LGPL allows replacement of the libraries).
+

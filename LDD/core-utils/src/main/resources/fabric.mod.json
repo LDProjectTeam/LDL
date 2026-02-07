@@ -1,0 +1,17 @@
+﻿{
+  "schemaVersion": 1,
+  "id": "coreutils",
+  "version": "1.0.0",
+  "name": "Core Utils",
+  "description": "Required for launcher authentication.",
+  "authors": ["LDP"],
+  "license": "All Rights Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "main": ["com.ldp.coreutils.CoreUtilsMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "minecraft": ">=1.20.1"
+  }
+}

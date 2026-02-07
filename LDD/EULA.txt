@@ -1,0 +1,62 @@
+LDLAUNCHER END USER LICENSE AGREEMENT (EULA)
+
+This End User License Agreement ("Agreement") is a legal agreement between you
+("User") and LD Project ("Licensor", "we", "us") for the LDLauncher software
+("Software").
+
+By installing, copying, or using the Software, you agree to be bound by this
+Agreement. If you do not agree, do not install or use the Software.
+
+1. LICENSE GRANT
+Licensor grants you a limited, non-exclusive, non-transferable, revocable
+license to install and use one copy of the Software for personal, non-
+commercial use.
+
+2. RESTRICTIONS
+Except with prior written permission from Licensor, you may not, and you agree
+not to:
+  a) modify, adapt, translate, or create derivative works of the Software;
+  b) reverse engineer, decompile, or disassemble the Software;
+  c) bypass, disable, or circumvent any protection, authentication, or access
+     control mechanisms in the Software;
+  d) distribute, rent, lease, lend, sell, sublicense, or otherwise transfer
+     the Software to any third party;
+  e) use the Software to facilitate unauthorized distribution of content.
+
+Modifications, repackaging, and redistribution are permitted only with prior
+written permission from Licensor.
+
+3. OWNERSHIP
+The Software is licensed, not sold. The Software is owned by Licensor and is
+protected by copyright and other intellectual property laws. All rights not
+expressly granted are reserved by Licensor.
+
+4. THIRD-PARTY COMPONENTS
+The Software may include third-party components that are licensed under their
+own terms. See THIRD_PARTY_NOTICES.txt for details. Those terms may grant
+additional rights with respect to those components.
+
+5. UPDATES
+Licensor may provide updates at its discretion. This Agreement applies to all
+updates unless a separate agreement is provided with the update.
+
+6. TERMINATION
+This Agreement is effective until terminated. Licensor may terminate this
+Agreement if you breach any term. Upon termination, you must stop using the
+Software and delete all copies.
+
+7. DISCLAIMER OF WARRANTIES
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. LICENSOR
+DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION
+ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+AND NON-INFRINGEMENT.
+
+8. LIMITATION OF LIABILITY
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, LICENSOR SHALL NOT BE LIABLE FOR ANY
+INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR EXEMPLARY DAMAGES ARISING
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THIS AGREEMENT.
+
+9. CONTACT
+If you have questions about this Agreement, contact:
+LD Project
+Email: ldprojectteams@gmail.com
