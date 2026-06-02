@@ -13,7 +13,7 @@
 
 <br/><br/>
 
-🇷🇺 [Русский](#русский) &nbsp;|&nbsp; 🇬🇧 [English](#english)
+🇷🇺 [Русский](#русский) &nbsp;|&nbsp; EN [English](#english)
 
 </div>
 
