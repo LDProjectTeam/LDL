@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .ldl-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .ldl-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .ldl-scrollbar::-webkit-scrollbar-thumb {
+    background: #507090;
+    border-radius: 0;
+  }
+  .ldl-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #80b0ff;
+  }
+  .drag-region {
+    -webkit-app-region: drag;
+  }
+  .no-drag {
+    -webkit-app-region: no-drag;
+  }
+  
+  /* CRT Glow Utility */
+  .text-glow {
+    text-shadow: 2px 0 4px rgba(128, 176, 255, 0.45), -2px 0 4px rgba(128, 176, 255, 0.45), 0 0 10px rgba(128, 176, 255, 0.25);
+  }
+  .text-glow-subtle {
+    text-shadow: 1px 0 2px rgba(128, 176, 255, 0.3), -1px 0 2px rgba(128, 176, 255, 0.3);
+  }
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #020205;
+  color: #d0e0ff;
+  user-select: none;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* CRT Scanlines Overlay */
+body::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 50;
+  background-size: 100% 3px, 3px 100%;
+  pointer-events: none;
+}
+
+/* Hide scrollbar in TON payment modal overlay (Chrome/Safari) */
+.no-drag::-webkit-scrollbar {
+  display: none;
+}
+
+/* Launcher update screen spinner */
+@keyframes ldl-spin {
+  to { transform: rotate(360deg); }
+}
+.ldl-spin {
+  animation: ldl-spin 0.9s linear infinite;
+}

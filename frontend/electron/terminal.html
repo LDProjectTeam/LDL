@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LDL INSTALLATION TERMINAL</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-red: #FF003C;
+      --secondary-red: #8B0000;
+      --error-red: #E10600;
+      --bg: #0A0000;
+      --bg-darker: #050000;
+      --dim: #1A0000;
+      --text-dim: #770000;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: 'Share Tech Mono', 'Rajdhani', monospace;
+      color: var(--primary-red);
+      overflow: hidden;
+      height: 100vh;
+      user-select: none;
+    }
+
+    /* ─── Frameless window border ─── */
+    .terminal-frame {
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--primary-red);
+      box-shadow:
+        inset 0 0 30px rgba(255, 42, 42, 0.03),
+        0 0 15px rgba(255, 42, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* ─── Header bar ─── */
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 16px;
+      background: linear-gradient(180deg, rgba(255, 42, 42, 0.06) 0%, transparent 100%);
+      border-bottom: 1px solid rgba(255, 42, 42, 0.15);
+      flex-shrink: 0;
+      -webkit-app-region: drag;
+    }
+
+    .terminal-title {
+      font-family: 'Share Tech Mono', 'Orbitron', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--primary-red);
+      text-shadow: 0 0 10px rgba(255, 42, 42, 0.5);
+    }
+
+    .terminal-status {
+      font-family: 'Share Tech Mono', 'Orbitron', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--secondary-red);
+      text-shadow: 0 0 8px rgba(153, 0, 0, 0.5);
+    }
+
+    /* ─── Terminal output area ─── */
+    .terminal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 16px;
+      font-family: 'Share Tech Mono', 'Rajdhani', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.7;
+      /* completely hide scrollbar but keep scroll functionality */
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+      -webkit-app-region: no-drag;
+    }
+
+    .terminal-body::-webkit-scrollbar {
+      display: none;
+      /* Chrome, Safari and Opera */
+    }
+
+    .line {
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .line.system {
+      color: var(--secondary-red);
+      font-weight: 600;
+    }
+
+    .line.error {
+      color: var(--error-red);
+    }
+
+    .line.success {
+      color: var(--primary-red);
+      font-weight: 700;
+    }
+
+    .line.dim {
+      color: var(--secondary-red);
+      opacity: 0.8;
+    }
+
+    .line.header {
+      color: var(--primary-red);
+      font-family: 'Share Tech Mono', 'Orbitron', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px rgba(255, 42, 42, 0.4);
+      margin-top: 8px;
+    }
+
+    /* ─── Progress bar ─── */
+    .progress-container {
+      margin: 4px 0;
+      font-family: 'Share Tech Mono', 'Rajdhani', monospace;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .progress-bar-text {
+      color: var(--primary-red);
+      text-shadow: 0 0 6px rgba(255, 42, 42, 0.3);
+    }
+
+    .progress-bar-empty {
+      color: var(--secondary-red);
+    }
+
+    .progress-pct {
+      color: var(--primary-red);
+      font-family: 'Share Tech Mono', 'Orbitron', monospace;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+
+    /* ─── Footer ─── */
+    .terminal-footer {
+      padding: 6px 16px;
+      border-top: 1px solid rgba(255, 42, 42, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      background: rgba(255, 42, 42, 0.02);
+    }
+
+    .footer-text {
+      font-family: 'Share Tech Mono', 'Orbitron', monospace;
+      font-size: 8px;
+      letter-spacing: 3px;
+      color: var(--secondary-red);
+    }
+
+    /* ─── Scanline effect ─── */
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      background: repeating-linear-gradient(0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.08) 2px,
+          rgba(0, 0, 0, 0.08) 4px);
+    }
+
+    /* Glitch effect removed per user request */
+
+    @keyframes lineAppear {
+      from {
+        opacity: 0;
+        transform: translateX(-5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* ─── Fade out ─── */
+    .fade-out {
+      animation: fadeOut 1.5s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+
+    /* ─── Cursor blink ─── */
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: var(--primary-red);
+      animation: blink 0.8s step-end infinite;
+      vertical-align: middle;
+      margin-left: 2px;
+      box-shadow: 0 0 6px rgba(255, 42, 42, 0.5);
+    }
+
+    @keyframes blink {
+
+      0%,
+      50% {
+        opacity: 1;
+      }
+
+      51%,
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false;">
+  <div class="scanlines"></div>
+  <div class="terminal-frame" id="frame">
+    <div class="terminal-header">
+      <span class="terminal-title">LDL // INSTALLATION TERMINAL</span>
+      <span class="terminal-status" id="statusLabel">STANDBY</span>
+    </div>
+    <div class="terminal-body" id="output"></div>
+    <div class="terminal-footer">
+      <span class="footer-text">LD LAUNCHER SYSTEMS v1.0</span>
+      <span class="footer-text" id="footerTime"></span>
+    </div>
+  </div>
+
+  <script>
+    // Force entirely block right click
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    const output = document.getElementById('output');
+    const statusLabel = document.getElementById('statusLabel');
+    const footerTime = document.getElementById('footerTime');
+    const BAR_WIDTH = 30;
+
+    // ─── Time display ───
+    setInterval(() => {
+      const d = new Date();
+      footerTime.textContent = d.toLocaleTimeString('en-US', { hour12: false }) + '.' +
+        String(d.getMilliseconds()).padStart(3, '0');
+    }, 100);
+
+    // ─── Add a line to the terminal ───
+    function addLine(text, cls = '') {
+      const el = document.createElement('div');
+      el.className = 'line ' + cls;
+      el.textContent = text;
+      output.appendChild(el);
+      output.scrollTop = output.scrollHeight;
+    }
+
+    // ─── Render progress bar ───
+    function renderProgressBar(percent) {
+      percent = Math.max(0, Math.min(100, Math.round(percent)));
+      const filled = Math.round((percent / 100) * BAR_WIDTH);
+      const empty = BAR_WIDTH - filled;
+
+      // Remove previous progress bar if exists
+      const prev = document.getElementById('progressLine');
+      if (prev) prev.remove();
+
+      const el = document.createElement('div');
+      el.className = 'progress-container';
+      el.id = 'progressLine';
+      el.innerHTML =
+        '<span class="progress-bar-text">[' + '|'.repeat(filled) + '</span>' +
+        '<span class="progress-bar-empty">' + '.'.repeat(empty) + '</span>' +
+        '<span class="progress-bar-text">]</span>' +
+        '<span class="progress-pct"> ' + percent + '%</span>';
+      output.appendChild(el);
+      output.scrollTop = output.scrollHeight;
+    }
+
+    // ─── Inline Spinner state ───
+    const spinChars = ['\\', '|', '/', '—'];
+    let inlineSpinIdx = 0;
+    let inlineSpinInterval = null;
+    let currentVerifyLine = null;
+
+    function startInlineSpinner(filename) {
+      if (currentVerifyLine) return;
+      const el = document.createElement('div');
+      el.className = 'line system';
+      el.textContent = `> Checking: ${filename} ........ ${spinChars[0]}`;
+      output.appendChild(el);
+      output.scrollTop = output.scrollHeight;
+      currentVerifyLine = el;
+
+      inlineSpinInterval = setInterval(() => {
+        inlineSpinIdx = (inlineSpinIdx + 1) % spinChars.length;
+        if (currentVerifyLine) {
+          currentVerifyLine.textContent = `> Checking: ${filename} ........ ${spinChars[inlineSpinIdx]}`;
+        }
+      }, 100);
+    }
+
+    function stopInlineSpinner(resultText, isError) {
+      if (inlineSpinInterval) {
+        clearInterval(inlineSpinInterval);
+        inlineSpinInterval = null;
+      }
+      if (currentVerifyLine) {
+        const baseText = currentVerifyLine.textContent.slice(0, currentVerifyLine.textContent.length - 1);
+        currentVerifyLine.textContent = baseText + resultText;
+        if (isError) {
+          currentVerifyLine.className = 'line error';
+        } else {
+          currentVerifyLine.className = 'line success';
+          currentVerifyLine.style.color = '#FF003C'; // Keep it Cyberpunk Red instead of generic green
+        }
+        currentVerifyLine = null;
+      }
+    }
+
+    // ─── Initial boot sequence ───
+    function bootSequence() {
+      statusLabel.textContent = 'INITIALIZING';
+      const lines = [
+        { text: '> SYSTEM BOOT...', cls: 'header', delay: 0 },
+        { text: '> INITIALIZING DOWNLOAD SUBSYSTEM...', cls: 'system', delay: 200 },
+        { text: '> CONNECTING TO SERVER...', cls: 'system', delay: 500 },
+      ];
+      lines.forEach(l => {
+        setTimeout(() => addLine(l.text, l.cls), l.delay);
+      });
+    }
+
+    // ─── Track current phase ───
+    let currentPhase = 'init';
+    let lastProgress = -1;
+
+    // ─── Handle incoming terminal events ───
+    let currentActionLabel = null;
+
+    window.terminalAPI.onLog((data) => {
+      try {
+        const msg = typeof data === 'string' ? JSON.parse(data) : data;
+        const status = msg.status || '';
+        let message = (msg.message || '').trim();
+        const progress = msg.progress || 0;
+
+        // Filter out redundant "Downloading" prefix if it somehow remains
+        message = message.replace(/^Downloading\s+/i, '');
+
+        // Phase detection by message content
+        if (message.includes('Java 17')) {
+          if (currentPhase !== 'java') {
+            currentPhase = 'java';
+            statusLabel.textContent = 'JAVA SETUP';
+            addLine('', '');
+            addLine('> AZUL ZULU JAVA 17 RUNTIME...', 'header');
+          }
+        } else if (message.includes('Configuring custom Fabric') || message.includes('Fabric profile generated')) {
+          if (currentPhase !== 'fabric') {
+            currentPhase = 'fabric';
+            statusLabel.textContent = 'FABRIC SETUP';
+            addLine('', '');
+            addLine('> FABRIC LOADER CONFIGURATION...', 'header');
+          }
+          addLine('  ' + message, 'system');
+        } else if (message.includes('1.20.1') && !message.includes('Java')) {
+          if (currentPhase !== 'minecraft') {
+            currentPhase = 'minecraft';
+            statusLabel.textContent = 'VANILLA SETUP';
+            addLine('', '');
+            addLine('> MINECRAFT 1.20.1 CORE...', 'header');
+          }
+        } else if (message.includes('Authenticating') || message.includes('GitHub')) {
+          if (currentPhase !== 'auth') {
+            currentPhase = 'auth';
+            statusLabel.textContent = 'AUTH';
+            addLine('', '');
+            addLine('> REPOSITORY AUTHENTICATION...', 'header');
+          }
+        } else if (message.includes('minecraft.zip')) {
+          if (currentPhase !== 'modpack-dl') {
+            currentPhase = 'modpack-dl';
+            statusLabel.textContent = 'DL MODPACK';
+            addLine('', '');
+            addLine('> MODPACK ARCHIVE...', 'header');
+          }
+        } else if (message.includes('Unpacking:') || message.includes('Target:') || message.includes('EXTRACTING')) {
+          if (currentPhase !== 'extract') {
+            currentPhase = 'extract';
+            statusLabel.textContent = 'EXTRACTING';
+            addLine('', '');
+            addLine('> FILE EXTRACTION...', 'header');
+          }
+          if (message.includes('Unpacking:')) {
+            addLine('  ' + message, 'system');
+          } else if (message.includes('Target:')) {
+            addLine('    -> ' + message.replace('Target: ', ''), 'dim');
+          }
+        } else if (message.includes('Extraction complete')) {
+          addLine('  > STATUS: OK', 'success');
+        } else if (status === 'verify-start') {
+          if (currentPhase !== 'verify') {
+            currentPhase = 'verify';
+            statusLabel.textContent = 'VERIFYING';
+            addLine('', '');
+            addLine('> VERIFYING FILE INTEGRITY...', 'header');
+          }
+          startInlineSpinner(message);
+          return;
+        } else if (status === 'verify-end') {
+          stopInlineSpinner(message, message === 'ERROR');
+          return;
+        } else if (status === 'success' || message.includes('Complete')) {
+          if (inlineSpinInterval) stopInlineSpinner('OK', false);
+          currentPhase = 'done';
+          statusLabel.textContent = 'COMPLETE';
+          addLine('', '');
+          addLine('══════════════════════════════════════', 'system');
+          addLine('> INSTALLATION COMPLETE', 'success');
+          addLine('> READY TO PLAY', 'success');
+          addLine('══════════════════════════════════════', 'system');
+          renderProgressBar(100);
+
+          setTimeout(() => {
+            document.getElementById('frame').classList.add('fade-out');
+            setTimeout(() => window.terminalAPI.close(), 1500);
+          }, 3000);
+          return;
+        }
+
+        // Progress bar handling (separate actions)
+        if (progress > 0 && progress < 100) {
+          // Track the label internally so we only update the progress bar, bypassing the chat log
+          if (status === 'progress' && message && !message.includes('%') && !message.includes('Unpacking')) {
+            if (currentActionLabel !== message) {
+              currentActionLabel = message;
+              // AddLine removed: User requested no extra text above the progress bar during downloads
+              // statusLabel.textContent = message.toUpperCase(); // Optional, but let's keep it simple
+            }
+          }
+          renderProgressBar(progress);
+        }
+
+      } catch (e) {
+        addLine('> ERROR: ' + e.message, 'error');
+      }
+    });
+
+    // ─── Boot ───
+    bootSequence();
+  </script>
+</body>
+
+</html>

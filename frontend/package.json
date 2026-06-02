@@ -1,0 +1,79 @@
+{
+  "name": "ldlauncher-frontend",
+  "private": true,
+  "version": "3.1.0",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "start": "electron .",
+    "build:exe": "npm run build && electron-builder",
+    "release": "node scripts/build.js",
+    "release:build": "node scripts/release.js"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@supabase/supabase-js": "^2.104.1",
+    "adm-zip": "^0.5.10",
+    "axios": "^1.6.7",
+    "discord-rpc": "^4.0.1",
+    "framer-motion": "^11.0.8",
+    "lucide-react": "^0.344.0",
+    "minecraft-launcher-core": "^3.18.2",
+    "msmc": "^5.0.5",
+    "nodemailer": "^8.0.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.18",
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4"
+  },
+  "build": {
+    "appId": "com.ldproject.launcher",
+    "productName": "LDLauncher",
+    "directories": {
+      "output": "../LDLauncher_Test_Build"
+    },
+    "compression": "store",
+    "npmRebuild": false,
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ],
+      "icon": "src/assets/icon.ico"
+    },
+    "portable": {
+      "artifactName": "LDLauncher_${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false,
+      "installerIcon": "src/assets/icon.ico",
+      "uninstallerIcon": "src/assets/icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "menuCategory": false,
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "artifactName": "LDLauncher_Setup_${version}.${ext}"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ]
+  }
+}
