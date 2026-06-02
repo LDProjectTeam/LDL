@@ -4,8 +4,8 @@
 
 **Кастомный лаунчер для Minecraft с тёмно-фэнтезийным интерфейсом**
 
-[![Version](https://img.shields.io/badge/version-3.1.0-red?style=for-the-badge)](https://github.com/LDProject/LDLauncher/releases)
-[![Platform](https://img.shields.io/badge/platform-Windows-blue?style=for-the-badge&logo=windows)](https://github.com/LDProject/LDLauncher/releases)
+[![Version](https://img.shields.io/badge/version-3.1.0-red?style=for-the-badge)](https://github.com/LDProjectTeam/LDL/releases)
+[![Platform](https://img.shields.io/badge/platform-Windows-blue?style=for-the-badge&logo=windows)](https://github.com/LDProjectTeam/LDL/releases)
 [![License](https://img.shields.io/badge/license-Proprietary-darkred?style=for-the-badge)](LICENSE)
 [![Electron](https://img.shields.io/badge/Electron-33-47848F?style=for-the-badge&logo=electron)](https://electronjs.org)
 
@@ -15,7 +15,7 @@
 
 <br/>
 
-[**⬇️ Скачать**](https://github.com/LDProject/LDLauncher/releases/latest) · [**🐛 Сообщить о баге**](https://github.com/LDProject/LDLauncher/issues) · [**💬 Поддержка**](https://github.com/LDProject/LDLauncher/releases)
+[**⬇️ Скачать**](https://github.com/LDProjectTeam/LDL/releases/latest) · [**🐛 Сообщить о баге**](https://github.com/LDProjectTeam/LDL/issues) · [**💬 Поддержка**](mailto:ldprojectteams@gmail.com)
 
 </div>
 
