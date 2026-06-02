@@ -15,7 +15,7 @@
 
 <br/>
 
-[**⬇️ Скачать**](https://github.com/LDProjectTeam/LDL/releases/latest) · [**🐛 Сообщить о баге**](https://github.com/LDProjectTeam/LDL/issues) · [**💬 Поддержка**](mailto:ldprojectteams@gmail.com)
+[**⬇️ Скачать**](https://github.com/LDProjectTeam/LDL/releases/latest) · [**🐛 Сообщить о баге**](https://github.com/LDProjectTeam/LDL/issues) · **💬 Поддержка:** ldprojectteams@gmail.com
 
 </div>
 
@@ -25,7 +25,7 @@
 
 <div align="center">
 
-![LDLauncher Preview](frontend/src/assets/2.png)
+<img src="screenshots/LDLauncher_CnXjN47BAT.jpg" width="32%"/> <img src="screenshots/LDLauncher_fuHWm2h4kC.jpg" width="32%"/> <img src="screenshots/LDLauncher_rJrphTvea8.jpg" width="32%"/>
 
 </div>
 
