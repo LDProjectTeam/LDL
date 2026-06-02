@@ -13,13 +13,13 @@
 
 <br/><br/>
 
-🇷🇺 [Русский](#-русский) &nbsp;|&nbsp; EN [English](#-english)
+🇷🇺 [Русский](#русский) &nbsp;|&nbsp; 🇬🇧 [English](#english)
 
 </div>
 
 ---
 
-## 🇷🇺 Русский
+## Русский
 
 **Кастомный лаунчер для Minecraft с тёмно-фэнтезийным интерфейсом**
 
@@ -61,7 +61,7 @@ npm run build:exe  # Сборка установщика
 
 ---
 
-## EN English
+## English
 
 **A custom Minecraft desktop launcher with a dark-fantasy interface**
 
