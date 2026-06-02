@@ -1,5 +1,0 @@
-PROPRIETARY SOFTWARE
-
-LDLauncher is proprietary software by LD Project. Use is governed by the
-EULA.txt provided with this distribution.
-
