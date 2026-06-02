@@ -61,7 +61,7 @@ npm run build:exe  # Сборка установщика
 
 ---
 
-## 🇬🇧 English
+##EN English
 
 **A custom Minecraft desktop launcher with a dark-fantasy interface**
 
