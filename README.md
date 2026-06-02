@@ -1,49 +1,142 @@
-﻿# LDLauncher
+<div align="center">
 
-A custom Minecraft desktop launcher built with Electron and React.
+# ⚔️ LDLauncher
 
-## Features
-- **Modern CRT Dark-Fantasy Aesthetic**: Designed with a high-performance visual style, smooth animations, and custom UI panels.
-- **Multiple Game Support**: Manage and run multiple instances (Lost Death series).
-- **In-App Payments**: Integrated payment option via Telegram Stars / TON.
-- **Support Chat**: Built-in support messaging portal linked directly with Supabase.
-- **System-Aware Optimizer**: Detects hardware tier (RAM, CPU cores) and auto-optimizes Minecraft launcher configuration (options.txt and Java arguments).
+**Кастомный лаунчер для Minecraft с тёмно-фэнтезийным интерфейсом**
 
-## Tech Stack
-- **Frontend / Desktop Core**: Electron, React, TypeScript, TailwindCSS, Vite, Framer Motion
-- **Backend / Services**: Supabase (Edge Functions, Database, Auth)
-- **Mod Guard**: Fabric API Minecraft Mod (Java)
-- **Support Website**: HTML5, Vanilla JS, Supabase integration
+[![Version](https://img.shields.io/badge/version-3.1.0-red?style=for-the-badge)](https://github.com/LDProject/LDLauncher/releases)
+[![Platform](https://img.shields.io/badge/platform-Windows-blue?style=for-the-badge&logo=windows)](https://github.com/LDProject/LDLauncher/releases)
+[![License](https://img.shields.io/badge/license-Proprietary-darkred?style=for-the-badge)](LICENSE)
+[![Electron](https://img.shields.io/badge/Electron-33-47848F?style=for-the-badge&logo=electron)](https://electronjs.org)
 
-## Setup & Running
+<br/>
 
-### Prerequisites
-- Node.js (v18+)
-- Java (JRE 17+ or equivalent for Minecraft runtime)
+> Профессиональный лаунчер для серии модпаков **Lost Death** с автооптимизатором системы, встроенной поддержкой и уникальным CRT-интерфейсом.
 
-### Development
-1. Navigate to the frontend directory:
-   `ash
-   cd frontend
-   `
-2. Install dependencies:
-   `ash
-   npm install
-   `
-3. Run the development server with Electron:
-   `ash
-   npm run dev
-   `
-   Or to start Electron directly:
-   `ash
-   npm start
-   `
+<br/>
 
-### Production Build
-To bundle the frontend and generate a portable Windows installer:
-`ash
-npm run build:exe
-`
+[**⬇️ Скачать**](https://github.com/LDProject/LDLauncher/releases/latest) · [**🐛 Сообщить о баге**](https://github.com/LDProject/LDLauncher/issues) · [**💬 Поддержка**](https://github.com/LDProject/LDLauncher/releases)
 
-## Licensing
-This project is open-source and licensed under the [MIT License](LICENSE).
+</div>
+
+---
+
+## 📸 Скриншоты
+
+<div align="center">
+
+![LDLauncher Preview](frontend/src/assets/2.png)
+
+</div>
+
+---
+
+## ✨ Возможности
+
+| Функция | Описание |
+|--------|----------|
+| 🎮 **Несколько игр** | Поддержка нескольких инстансов серии Lost Death |
+| 🖥️ **CRT Dark-Fantasy UI** | Уникальный интерфейс с анимациями и эффектами в стиле тёмного фэнтези |
+| ⚙️ **Автооптимизатор** | Определяет мощность ПК и автоматически настраивает JVM-аргументы и RAM |
+| 🛡️ **Guard Mod** | Встроенная защита от читов и несанкционированных клиентов (Fabric Mod) |
+| 💬 **Поддержка** | Встроенный чат поддержки с командой, подключённый через Supabase |
+| 💳 **Оплата** | Встроенная оплата через Telegram Stars / TON |
+| 🌍 **Мультиязычность** | Авто-определение языка системы (RU / EN) |
+| 🎵 **Discord RPC** | Отображение активности в Discord |
+| 🔄 **Авто-обновление** | Лаунчер проверяет и устанавливает обновления автоматически |
+
+---
+
+## 🚀 Быстрый старт
+
+### 1. Скачать лаунчер
+
+Перейди в раздел [**Releases**](https://github.com/LDProject/LDLauncher/releases/latest) и скачай один из вариантов:
+
+- `LDLauncher_Setup_3.1.0.exe` — Установщик (рекомендуется)
+- `LDLauncher_3.1.0.exe` — Портативная версия (без установки)
+
+### 2. Установить и запустить
+
+Запусти скачанный файл. Лаунчер автоматически:
+- Установит нужную версию Java
+- Скачает выбранный модпак
+- Настроит игру под твоё железо
+
+---
+
+## 🛠️ Tech Stack
+
+```
+Frontend:  React 18 · TypeScript · TailwindCSS · Framer Motion · Vite
+Desktop:   Electron 33
+Backend:   Supabase (PostgreSQL · Edge Functions · Auth · Storage)
+Mod Guard: Fabric API · Java 17
+Build:     electron-builder · NSIS
+```
+
+---
+
+## 🔧 Сборка из исходников
+
+> [!IMPORTANT]
+> Для сборки требуется разрешение от LDProject. Код защищён проприетарной лицензией.
+
+### Требования
+- Node.js v18+
+- Java JRE 17+
+
+### Запуск в режиме разработки
+
+```bash
+cd frontend
+npm install
+npm run dev          # Vite dev-server в браузере
+npm start            # Запустить в Electron
+```
+
+### Сборка установщика
+
+```bash
+npm run build:exe    # Сборка + NSIS-установщик
+```
+
+Или используй `test.bat` для удобного меню сборки.
+
+---
+
+## 📁 Структура проекта
+
+```
+LDLauncher/
+├── frontend/
+│   ├── src/
+│   │   ├── components/     # React компоненты (UI)
+│   │   ├── contexts/       # React контексты
+│   │   ├── data/           # Данные игр и настроек
+│   │   └── i18n.tsx        # Локализация RU/EN
+│   ├── electron/
+│   │   ├── main.js         # Главный процесс Electron
+│   │   ├── preload.js      # Preload-скрипт
+│   │   └── managers/       # Менеджеры (установка, запуск, Java, Discord)
+│   └── package.json
+└── LICENSE
+```
+
+---
+
+## 📜 Лицензия
+
+Copyright (c) 2026 **LDProject**. Все права защищены.
+
+Данный проект распространяется под проприетарной лицензией. Любое копирование, изменение, распространение или использование кода без письменного разрешения **LDProject** строго запрещено.
+
+Подробнее: [LICENSE](LICENSE)
+
+---
+
+<div align="center">
+
+Сделано с ❤️ командой **LDProject**
+
+</div>
