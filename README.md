@@ -53,8 +53,8 @@
 
 Перейди в раздел [**Releases**](https://github.com/LDProject/LDLauncher/releases/latest) и скачай один из вариантов:
 
-- `LDLauncher_Setup_3.1.0.exe` — Установщик (рекомендуется)
-- `LDLauncher_3.1.0.exe` — Портативная версия (без установки)
+- `LDLauncher_Setup_х.х.х.exe` — Установщик (рекомендуется)
+- `LDLauncher_х.х.х.exe` — Портативная версия (без установки)
 
 ### 2. Установить и запустить
 
