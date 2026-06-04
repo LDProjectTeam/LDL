@@ -2,7 +2,7 @@
 
 # ⚔️ LDLauncher
 
-[![Version](https://img.shields.io/badge/version-3.1.0-red?style=for-the-badge)](https://github.com/LDProjectTeam/LDL/releases)
+[![Version](https://img.shields.io/badge/version-x.y.z-red?style=for-the-badge)](https://github.com/LDProjectTeam/LDL/releases)
 [![Platform](https://img.shields.io/badge/platform-Windows-blue?style=for-the-badge&logo=windows)](https://github.com/LDProjectTeam/LDL/releases)
 [![License](https://img.shields.io/badge/license-Proprietary-darkred?style=for-the-badge)](LICENSE)
 [![Electron](https://img.shields.io/badge/Electron-33-47848F?style=for-the-badge&logo=electron)](https://electronjs.org)
